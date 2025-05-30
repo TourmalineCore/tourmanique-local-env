@@ -34,6 +34,17 @@ releases:
     values:
       - values-postgresql.yaml.gotmpl
 
+
+  - name: minio-s3
+    labels:
+      app: minio-s3
+    wait: true
+    chart: bitnami/minio
+    version: 14.8.5
+    values: 
+      - values-minio.yaml.gotmpl
+
+
   - name: tourmanique-api
     labels:
       app: tourmanique-api
@@ -46,6 +57,7 @@ releases:
     needs: 
       - ingress-nginx
       - postgresql
+      - minio-s3
     values:
     #   # https://helmfile.readthedocs.io/en/latest/#loading-remote-environment-values-files
       - git::https://github.com/TourmalineCore/tourmanique-api.git@/ci/values.yaml?ref={{ env "TOURMANIQUE_API_BRANCH" | default "develop" }}

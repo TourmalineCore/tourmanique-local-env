@@ -1,5 +1,5 @@
 image:
-  tag: "sha-d2eb7d98c28833be4203c5cac9ffd4c2239b0a1b"
+  tag: "sha-f511bf3bbb025565f752f2c81becf13a061297d7"
 
 extraConfigMapEnvVars:
   FLASK_APP: "application.py:create_app"
@@ -27,7 +27,8 @@ extraConfigMapEnvVars:
   MINIO_ROOT_USER: "tourmanique"
   MINIO_ROOT_PASSWORD: "tourmanique"
 
-  RABBITMQ_HOST: "tourmanique-api-rabbitmq"
+  RABBITMQ_HOST: "rabbitmq"
+  RABBITMQ_PORT: "5672"
   RABBITMQ_DEFAULT_USER: "tourmanique"
   RABBITMQ_DEFAULT_PASS: "tourmanique"
 
@@ -37,4 +38,19 @@ extraConfigMapEnvVars:
 
   AUTH_USERNAME: "tourmanique"
   AUTH_PASSWORD: "tourmanique"
-  
+
+
+initContainers:
+  - name: create-bucket
+    image: minio/mc
+    command: ["/bin/sh", "-c"]
+    args:
+      - |
+        while ! mc alias set myminio http://minio-s3:9000 tourmanique tourmanique; do
+          echo "Waiting for MinIO to be ready... Pod isn't alive yet"
+          sleep 10
+        done
+        mc mb myminio/tourmanique
+        mc policy set public myminio/tourmanique
+        mc anonymous set download myminio/tourmanique
+        mc policy myminio/tourmanique

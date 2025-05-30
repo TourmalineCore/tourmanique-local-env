@@ -5,6 +5,9 @@ ingress:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
   tls: false
 
+image:
+  tag: "latest"
+
 service:
   ports:
     http: 30090

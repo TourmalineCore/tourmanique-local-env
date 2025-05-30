@@ -1,0 +1,17 @@
+auth:
+  rootUser: "tourmanique"
+  rootPassword: "tourmanique"
+
+defaultBuckets: tourmanique
+
+ingress:
+  enabled: true
+  ingressClassName: "nginx"
+  hostname: minio-s3-console.{{ .Values.hostname }}
+  path: /
+
+apiIngress:
+  enabled: true
+  ingressClassName: "nginx"
+  hostname: minio-s3.{{ .Values.hostname }}
+  path: /
