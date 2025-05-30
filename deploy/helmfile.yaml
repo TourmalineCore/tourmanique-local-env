@@ -44,6 +44,15 @@ releases:
     values: 
       - values-minio.yaml.gotmpl
 
+  - name: rabbitmq
+    labels:
+      app: rabbitmq
+    wait: true
+    chart: bitnami/rabbitmq
+    version: 16.0.3
+    values:
+      - values-rabbitmq.yaml.gotmpl
+
 
   - name: tourmanique-api
     labels:

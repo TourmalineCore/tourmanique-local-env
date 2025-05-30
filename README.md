@@ -92,6 +92,8 @@ When the all k8s pods are running inside **`local`** namespace you should be abl
 
 - UI: http://localhost:30090/
 - API: http://localhost:30090/api/
+- Minio-S3: http://minio-s3-console.localhost:30090/
+- RabbitMQ Management: http://rabbitmq.localhost:30090/
 
 ## Troubleshooting
 - OpenLens not showing any pods, deployments, etc.. Make sure the "Namespace" in view "Workloads" is set to "`local`" or "`All namespaces`"
