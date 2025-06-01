@@ -1,0 +1,44 @@
+image:
+  tag: "latest"
+
+extraConfigMapEnvVars:
+  FLASK_APP: "application.py:create_app"
+  FLASK_RUN_HOST: "0.0.0.0"
+  FLASK_RUN_PORT: "5000"
+  FLASK_DEBUG: "true"
+  FLASK_ENV: "development"
+
+  POSTGRES_HOST: "postgresql"
+  POSTGRES_PORT: "5432"
+  POSTGRES_USER: "postgres"
+  POSTGRES_PASSWORD: "postgres"
+  POSTGRES_DB: "color-service-db"
+
+  S3_ENDPOINT: "http://minio-s3:9000"
+  S3_ACCESS_KEY_ID: "tourmanique"
+  S3_SECRET_ACCESS_KEY: "tourmanique"
+  S3_BUCKET_NAME: "tourmanique"
+  S3_PREFIX: ""
+  S3_USE_SSL: "false"
+
+  S3_ENDPOINT_FOR_UI_LINKS: "http://minio-s3:9000"
+
+  #S3 minio for debug
+  MINIO_ROOT_USER: "tourmanique"
+  MINIO_ROOT_PASSWORD: "tourmanique"
+
+  RABBITMQ_HOST: "rabbitmq"
+  RABBITMQ_PORT: "5672"
+  RABBITMQ_DEFAULT_USER: "tourmanique"
+  RABBITMQ_DEFAULT_PASS: "tourmanique"
+
+  RABBITMQ_MODELS_MAX_RETRY_NUMBER: "3"
+  RABBITMQ_MODELS_RETRY_DELAY_MS: "1000"
+  RABBITMQ_REQUESTS_EXCHANGE_NAME: "photo-for-models-exchange"
+  RABBITMQ_MODELS_QUEUES_DLX_NAME: "model-dlx"
+  RABBITMQ_MODELS_RETRY_QUEUE_NAME: "delayed-retry-queue"
+  RABBITMQ_MODELS_RETRY_QUEUE_DLX_NAME: "model-retry-dlx"
+  RABBITMQ_RESULTS_EXCHANGE_NAME: "colors-determined-exchange"
+
+  MODEL_TYPE: "colors-model"
+  PROCESSING_RESULT_EVENT_NAME: "ColorDetermined"

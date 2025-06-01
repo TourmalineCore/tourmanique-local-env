@@ -1,14 +1,12 @@
-global:
-    postgresql:
-        auth:
-            postgresPassword: postgres
-            username: postgres
-            password: postgres
-            database: postgres
+auth:
+  postgresPassword: postgres
+  username: postgres
+  password: postgres
+  database: postgres
 
 
 primary:
-    service:
-        type: NodePort
-        nodePorts:
-            postgresql: 30100
+  service:
+    type: NodePort
+    nodePorts:
+      postgresql: 30100
