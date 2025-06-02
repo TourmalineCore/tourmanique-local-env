@@ -91,3 +91,23 @@ releases:
       - git::https://github.com/TourmalineCore/tourmanique-color-service.git@/ci/values.yaml?ref={{ env "TOURMANIQUE_COLOR_SERVICE_BRANCH" | default "develop" }}
       - values.yaml.gotmpl
       - values-tourmanique-color-service.yaml.gotmpl
+
+
+  - name: tourmanique-emotion-service
+    labels:
+      app: tourmanique-emotion-service
+    wait: true
+    chart: bitnami/nginx
+    # after 15.3.5 our docker file or setup can no longer start, need to investigate what is wrong for the newer versions
+    version: 15.3.5
+    # it won't work anyway until ingress controller is created
+    # thus we wait for it to be ready first
+    needs: 
+      - ingress-nginx
+      - postgresql
+      - minio-s3
+    values:
+    #   # https://helmfile.readthedocs.io/en/latest/#loading-remote-environment-values-files
+      - git::https://github.com/TourmalineCore/tourmanique-emotion-service.git@/ci/values.yaml?ref={{ env "TOURMANIQUE_EMOTION_SERVICE_BRANCH" | default "develop" }}
+      - values.yaml.gotmpl
+      - values-tourmanique-emotion-service.yaml.gotmpl
