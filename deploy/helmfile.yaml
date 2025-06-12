@@ -107,7 +107,7 @@ releases:
       - postgresql
       - minio-s3
     values:
-    #   # https://helmfile.readthedocs.io/en/latest/#loading-remote-environment-values-files
+      # https://helmfile.readthedocs.io/en/latest/#loading-remote-environment-values-files
       - git::https://github.com/TourmalineCore/tourmanique-emotion-service.git@/ci/values.yaml?ref={{ env "TOURMANIQUE_EMOTION_SERVICE_BRANCH" | default "develop" }}
       - values.yaml.gotmpl
       - values-tourmanique-emotion-service.yaml.gotmpl
